@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUNNE & RABY - Not Here, Not Now</title>
+    <title>PI - פולי־אינטליגנציה</title>
     <style>
         @font-face {
             font-family: 'ArbelHagilda';
@@ -32,17 +32,34 @@
             margin-bottom: 40px;
         }
 
+        .logo-video {
+            width: 200px;
+            height: auto;
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
         .header h1 {
             font-size: 2em;
             letter-spacing: 8px;
             font-weight: 300;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
+            color: #D54145;
         }
 
         .subtitle {
             font-size: 0.9em;
-            margin-bottom: 40px;
-            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .subtitle.main {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+            color: #D54145;
+        }
+
+        .subtitle.english {
+            color: #D54145;
         }
 
         /* Image Grid */
@@ -99,8 +116,8 @@
 
         .video-button {
             display: inline-block;
-            background-color: #50E3C2;
-            color: #000;
+            background-color: #D54145;
+            color: #ffffff;
             padding: 8px 20px;
             text-decoration: none;
             font-size: 0.85em;
@@ -112,7 +129,7 @@
         }
 
         .video-button:hover {
-            background-color: #3dd4b3;
+            background-color: #C13539;
         }
 
         .large-video {
@@ -121,14 +138,22 @@
             border: 1px solid #ddd;
         }
 
+        .large-video.hidden {
+            display: none;
+        }
+
         .info-section {
             position: relative;
         }
 
+        .project-text.hidden {
+            display: none;
+        }
+
         .info-button {
             display: inline-block;
-            background-color: #50E3C2;
-            color: #000;
+            background-color: #D54145;
+            color: #ffffff;
             padding: 8px 20px;
             text-decoration: none;
             font-size: 0.85em;
@@ -140,7 +165,7 @@
         }
 
         .info-button:hover {
-            background-color: #3dd4b3;
+            background-color: #C13539;
         }
 
         .project-text {
@@ -221,8 +246,12 @@
 </head>
 <body>
     <div class="header">
-        <h1>DUNNE & RABY</h1>
-        <div class="subtitle">NOT HERE, NOT NOW (VIDEO), 2015</div>
+        <video class="logo-video" autoplay muted loop playsinline>
+            <source src="videos/logo.mp4" type="video/mp4">
+        </video>
+        <h1>*PI</h1>
+        <div class="subtitle main">מערכת חינוך אוטופואטית בהתארגנות עצמית</div>
+        <div class="subtitle english">Polyhadronic Intelligence*</div>
     </div>
 
     <!-- Image and Video Grid -->
@@ -307,8 +336,8 @@
     <div class="content-section">
         <!-- Left Column: Video -->
         <div class="video-section">
-            <button class="video-button">Video >></button>
-            <video class="large-video" controls autoplay muted loop playsinline>
+            <button class="video-button" onclick="toggleVideo()">סרטון >></button>
+            <video id="mainVideo" class="large-video hidden" controls muted loop playsinline>
                 <source src="videos/main-video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -316,35 +345,39 @@
 
         <!-- Right Column: Project Info -->
         <div class="info-section">
-            <button class="info-button">Project Info >></button>
-            <div class="project-text">
-                <p>We were commissioned by the MAK to produce new work for <a href="#">The School of Constructed Realities</a> exhibition at the Geymüllerschlössel. We focused on how design fictions are presented and wanted to move away from realism and naturalism to present a more ambiguous world, it could be now, the past or the future.</p>
+            <button class="info-button" onclick="toggleInfo()">אודות הפרויקט >></button>
+            <div id="projectText" class="project-text hidden">
+                <p>בעתיד הקרוב, הבינה המלאכותית כבר יודעת לבחור, להמליץ ולהחליט כמעט על כל דבר. היא מכירה כל אדם לעומק, מנבאת רצונות וחוסכת מאמץ. החיים נעשו נוחים ויעילים, אך במקביל משהו מהותי החל להיחלש. אנשים חשבו פחות, דמיינו פחות, והתרגלו לכך שמישהו אחר עושה זאת עבורם. כמו שריר שאינו מופעל, גם השכל והאופי החלו לאבד מכוחם.</p>
 
-                <p>We developed an earlier project commissioned by Z33 called Not Here, Not Now which consisted of six design proposals for slightly satirical objects for Digitarians.</p>
+                <p>כדי לשמור על האנושיות, נוצרה מערכת חינוך אחרת לגמרי - מערכת אוטופואטית, מתארגנת־עצמית, המבוססת על Polyhadronic Intelligence (PI)  אין בה מורים, כיתות או תוכנית לימודים קבועה. לכל ילד מוצמד PI אישי, שאינו אחראי למסירת תשובות אלא להנעת תהליך הלמידה. במקום פתרונות נוחים, הוא שואל שאלות קשות, מציב ספקות ודוחף למאמץ ולטעויות. כך נבנות חשיבה ביקורתית, דמיון ואומץ פנימי - תכונות שלא ניתן להוריד כאפליקציה.</p>
 
-                <p>The first one is an Ethiculator: A calculator for resolving everyday ethical dilemmas. It's the end point of a long journey involving a shift away from human judgement to standardisation through templates and forms to algorithms…</p>
+                <p>על ידו של כל ילד וילדה מגיל תשע תוצמד מדבקה קטנה ועמידה, המכילה את רכיבי ה-PI ומאפשרת פתיחה או סגירה מלאה של המערכת לפי בחירתם. בכל רגע יכולים הילדים לשדר או לקלוט סקרנות: רעיון, משחק או שאלה. אחרים נמשכים לאות, מצטרפים להרפתקה, ונוצרות קבוצות זמניות של למידה ומשחק ללא תלות בגיל או בוותק. בתוך המפגשים הללו הם לומדים להקשיב, להתווכח, להוביל ולהיות מובל. אמפתיה, תקשורת וחוסן רגשי אינם נלמדים באופן תיאורטי, אלא צומחים מתוך החיכוך היומיומי עם אחרים.</p>
 
-                <p>In the second design, Publi-Voice, we fast forwarded the gulf opening between what people can say in private and public, 'public' meaning social and online media. It's not hard to imagine a time when we need to be schooled in how we present ourselves in public and make use of special vocabularies so as not to offend others and suffer the increasingly serious consequences that come with it.</p>
-
-                <p>The device is for visitors to Digiland who need to translate terms they use in their own culture in to less harmful ones for digiland. Basically we're talking about euphemisms. Some already exist, while a few were developed by digitarians.</p>
-
-                <p>We were very interested in using isometric projection rather than perspective to make everything feel a little less natural, in a subtle way. We also wanted to make the materiality of the object ambiguous - is it a field, a film, or a material? And finally, at some point we may see a return of the 3rd dimension and a move away from the reduction of electronic objects to flat screens and instead see them tailored to our bodies and environments.</p>
-
-                <div class="credits">
-                    <p>Commissioner: Thomas Geisler/<a href="#">MAK Design Salon #4</a><br>
-                    Concept, design and creative direction: Dunne & Raby<br>
-                    Effects: <a href="#">Keiichi Matsuda</a><br>
-                    3D Models: <a href="#">Lukas Franciszkiewicz</a><br>
-                    Camera: Lee Daley<br>
-                    Girl 1: Helen Mutch<br>
-                    Girl 2: Laura McAlpine<br>
-                    Hair & Make-up: <a href="#">Wakana Yoshihara</a><br>
-                    Additional Compositing: Ray Hugh Bray</p>
-                </div>
-
-                <a href="#" class="back-link"><<</a>
+                <p>בסביבת הילדים פועלים אמנים, חוקרים ויוצרים, השקועים בעשייתם במרחב הציבורי. תפקידם אינו ללמד, אלא להחיות את הידע שלהם בפומבי. התשוקה שלהם פועלת ככוח משיכה, שמדליק סקרנות ומייצר מוטיבציה ראשונית. לעיתים גם ילד צעיר שגילה משהו חדש הופך למוקד משיכה בעצמו, וההיררכיות המוכרות מתמוססות. הכול מתרחש במרחב פתוח, ללא מרכז אחד, שבו מותר להיכשל ומותר ללכת לאיבוד- כי שם, במפגש שבין סקרנות אישית לנוכחות אנושית, נולדים ידע עמוק וזהות חזקה.</p>
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleVideo() {
+            const video = document.getElementById('mainVideo');
+            if (video.classList.contains('hidden')) {
+                video.classList.remove('hidden');
+                video.play();
+            } else {
+                video.classList.add('hidden');
+                video.pause();
+            }
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById('projectText');
+            if (info.classList.contains('hidden')) {
+                info.classList.remove('hidden');
+            } else {
+                info.classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
