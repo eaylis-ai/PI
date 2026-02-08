@@ -33,10 +33,10 @@
         }
 
         .logo-video {
-            width: 300px;
+            width: 200px;
             height: auto;
-            margin: 0 auto 0px auto;
-            display: transparent;
+            margin: 0 auto 20px auto;
+            display: block;
         }
 
         .header h1 {
@@ -246,9 +246,7 @@
 </head>
 <body>
     <div class="header">
-        <video class="logo-video" autoplay muted loop playsinline>
-            <source src="videos/logo.gif" type="video/gif">
-        </video>
+        <img class="logo-video" src="images/logo.gif" alt="Logo">
         <h1>*PI</h1>
         <div class="subtitle main">מערכת חינוך אוטופואטית בהתארגנות עצמית</div>
         <div class="subtitle english">Polyhadronic Intelligence*</div>
@@ -256,7 +254,7 @@
 
     <!-- Image and Video Grid -->
     <div class="image-grid">
-        <!-- FIRST ROW: 4 landscape rectangles -->
+        <!-- FIRST ROW: right to left: landscape image, landscape image, landscape image, landscape mp4 -->
         <div class="grid-item landscape">
             <img src="images/row1-item1.jpg" alt="Gallery image 1">
         </div>
@@ -272,14 +270,12 @@
             </video>
         </div>
 
-        <!-- SECOND ROW: portrait, landscape, landscape, portrait, landscape -->
+        <!-- SECOND ROW: right to left: portrait image, landscape image, landscape mp4, portrait image, landscape image -->
         <div class="grid-item portrait">
-        <div class="grid-item portrait">
-            <img src="images/row2-item1.jpg" alt="Gallery image 4">
-            </video>
+            <img src="images/row2-item1.jpg" alt="Gallery image 5">
         </div>
         <div class="grid-item landscape">
-            <img src="images/row2-item2.jpg" alt="Gallery image 7">
+            <img src="images/row2-item2.jpg" alt="Gallery image 6">
         </div>
         <div class="grid-item landscape">
             <video autoplay muted loop playsinline>
@@ -287,43 +283,35 @@
             </video>
         </div>
         <div class="grid-item portrait">
-            <img src="images/row2-item4.jpg" alt="Gallery image 9">
+            <img src="images/row2-item4.jpg" alt="Gallery image 7">
         </div>
         <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row2-item5.mp4" type="video/mp4">
-            </video>
+            <img src="images/row2-item5.jpg" alt="Gallery image 8">
         </div>
 
-        <!-- THIRD ROW: 5 landscape rectangles -->
+        <!-- THIRD ROW: 5 landscape images -->
         <div class="grid-item landscape">
-            <img src="images/row3-item1.jpg" alt="Gallery image 11">
+            <img src="images/row3-item1.jpg" alt="Gallery image 9">
         </div>
         <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row3-item2.mp4" type="video/mp4">
-            </video>
+            <img src="images/row3-item2.jpg" alt="Gallery image 10">
         </div>
         <div class="grid-item landscape">
-            <img src="images/row3-item3.jpg" alt="Gallery image 13">
+            <img src="images/row3-item3.jpg" alt="Gallery image 11">
         </div>
         <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row3-item4.mp4" type="video/mp4">
-            </video>
+            <img src="images/row3-item4.jpg" alt="Gallery image 12">
         </div>
         <div class="grid-item landscape">
-            <img src="images/row3-item5.jpg" alt="Gallery image 15">
+            <img src="images/row3-item5.jpg" alt="Gallery image 13">
         </div>
 
-        <!-- FOURTH ROW: 2 landscape rectangles -->
+        <!-- FOURTH ROW: 2 landscape images -->
         <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row4-item1.mp4" type="video/mp4">
-            </video>
+            <img src="images/row4-item1.jpg" alt="Gallery image 14">
         </div>
         <div class="grid-item landscape">
-            <img src="images/row4-item2.jpg" alt="Gallery image 17">
+            <img src="images/row4-item2.jpg" alt="Gallery image 15">
         </div>
     </div>
 
