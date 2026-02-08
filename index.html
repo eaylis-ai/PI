@@ -53,6 +53,44 @@
     .subtitle.main { font-size: 1.3em; margin-bottom: 5px; color: #D54145; }
     .subtitle.english { color: #D54145; }
 
+    /* Fixed Project Info Section - Left Side */
+    .fixed-info-section {
+      position: fixed;
+      top: 100px;
+      left: 25%;
+      transform: translateX(-50%);
+      z-index: 99;
+      max-width: 400px;
+    }
+
+    .info-button {
+      display: inline-block;
+      background-color: #D54145;
+      color: #ffffff;
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 0.85em;
+      margin-bottom: 20px;
+      border: none;
+      cursor: pointer;
+      font-family: 'ArbelHagilda', 'Arial', sans-serif;
+      font-weight: bold;
+    }
+
+    .info-button:hover { background-color: #C13539; }
+
+    .project-text {
+      font-size: 0.9em;
+      line-height: 1.8;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .project-text.hidden { display: none; }
+    .project-text p { margin-bottom: 20px; }
+
     /* Image Grid */
     .image-grid {
       display: flex;
@@ -164,15 +202,19 @@
       max-width: 250px;
     }
 
-    /* Two Column Layout */
+    /* Video Section */
     .content-section {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 40px;
       margin-top: 30px;
     }
 
-    .video-section { position: relative; }
+    .video-section { 
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
     .video-button {
       display: inline-block;
@@ -197,66 +239,33 @@
 
     .large-video.hidden { display: none; }
 
-    .info-section { position: relative; }
-
-    .project-text.hidden { display: none; }
-
-    .info-button {
-      display: inline-block;
-      background-color: #D54145;
-      color: #ffffff;
-      padding: 8px 20px;
-      text-decoration: none;
-      font-size: 0.85em;
-      margin-bottom: 20px;
-      border: none;
-      cursor: pointer;
-      font-family: 'ArbelHagilda', 'Arial', sans-serif;
-      font-weight: bold;
-    }
-
-    .info-button:hover { background-color: #C13539; }
-
-    .project-text { font-size: 0.9em; line-height: 1.8; }
-    .project-text p { margin-bottom: 20px; }
-    .project-text a { color: #50E3C2; text-decoration: none; }
-    .project-text a:hover { text-decoration: underline; }
-
-    .credits { margin-top: 30px; font-size: 0.85em; line-height: 1.8; }
-
-    .back-link {
-      color: #50E3C2;
-      text-decoration: none;
-      font-size: 0.9em;
-      margin-top: 30px;
-      display: inline-block;
-    }
-
-    .back-link:hover { text-decoration: underline; }
-
     /* Responsive */
     @media (max-width: 1024px) {
-      .image-grid { grid-template-columns: repeat(4, 1fr); }
-      .grid-item.landscape { grid-column: span 2; }
+      .fixed-info-section {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        max-width: 100%;
+        margin-bottom: 40px;
+      }
+      
       .content-section { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
-      .image-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-item.landscape { grid-column: span 2; }
-      .grid-item.portrait { grid-row: span 1; aspect-ratio: 9/16; }
       body { padding: 20px; }
       .header h1 { font-size: 1.5em; letter-spacing: 4px; }
+      
+      .fixed-info-section {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+      }
     }
 
-    /* ============================================================
-       PANORAMA ROW ONLY — DOES NOT AFFECT OTHER ROWS
-       Fixes cropping caused by:
-       - .grid-item { overflow:hidden }
-       - .grid-item.extra-wide { height:394px }
-       - .grid-item img { height:100%; object-fit:cover }
-       ============================================================ */
-
+    /* Panorama Row */
     .grid-row.panorama-row {
       max-width: none;
       width: 100%;
@@ -264,16 +273,16 @@
     }
 
     .grid-row.panorama-row > .grid-item.extra-wide {
-      width: 1535px;     /* adjust if needed */
+      width: 1535px;
       max-width: 100%;
-      height: auto;      /* remove fixed height ONLY here */
-      overflow: visible; /* stop clipping ONLY here */
+      height: auto;
+      overflow: visible;
     }
 
     .grid-row.panorama-row > .grid-item.extra-wide > img {
       width: 100%;
       height: auto;
-      object-fit: contain; /* show full panorama (no crop) */
+      object-fit: contain;
       display: block;
     }
   </style>
@@ -289,6 +298,20 @@
 
     <div class="subtitle main">מערכת חינוך אוטופואטית בהתארגנות עצמית</div>
     <div class="subtitle english">Polyhadronic Intelligence*</div>
+  </div>
+
+  <!-- Fixed Project Info Section - Left Side -->
+  <div class="fixed-info-section">
+    <button class="info-button" onclick="toggleInfo()">אודות הפרויקט >></button>
+    <div id="projectText" class="project-text hidden">
+      <p>בעתיד הקרוב, הבינה המלאכותית כבר יודעת לבחור, להמליץ ולהחליט כמעט על כל דבר. היא מכירה כל אדם לעומק, מנבאת רצונות וחוסכת מאמץ. החיים נעשו נוחים ויעילים, אך במקביל משהו מהותי החל להיחלש. אנשים חשבו פחות, דמיינו פחות, והתרגלו לכך שמישהו אחר עושה זאת עבורם. כמו שריר שאינו מופעל, גם השכל והאופי החלו לאבד מכוחם.</p>
+
+      <p>כדי לשמור על האנושיות, נוצרה מערכת חינוך אחרת לגמרי - מערכת אוטופואטית, מתארגנת־עצמית, המבוססת על Polyhadronic Intelligence (PI)  אין בה מורים, כיתות או תוכנית לימודים קבועה. לכל ילד מוצמד PI אישי, שאינו אחראי למסירת תשובות אלא להנעת תהליך הלמידה. במקום פתרונות נוחים, הוא שואל שאלות קשות, מציב ספקות ודוחף למאמץ ולטעויות. כך נבנות חשיבה ביקורתית, דמיון ואומץ פנימי - תכונות שלא ניתן להוריד כאפליקציה.</p>
+
+      <p>על ידו של כל ילד וילדה מגיל תשע תוצמד מדבקה קטנה ועמידה, המכילה את רכיבי ה-PI ומאפשרת פתיחה או סגירה מלאה של המערכת לפי בחירתם. בכל רגע יכולים הילדים לשדר או לקלוט סקרנות: רעיון, משחק או שאלה. אחרים נמשכים לאות, מצטרפים להרפתקה, ונוצרות קבוצות זמניות של למידה ומשחק ללא תלות בגיל או בוותק. בתוך המפגשים הללו הם לומדים להקשיב, להתווכח, להוביל ולהיות מובל. אמפתיה, תקשורת וחוסן רגשי אינם נלמדים באופן תיאורטי, אלא צומחים מתוך החיכוך היומיומי עם אחרים.</p>
+
+      <p>בסביבת הילדים פועלים אמנים, חוקרים ויוצרים, השקועים בעשייתם במרחב הציבורי. תפקידם אינו ללמד, אלא להחיות את הידע שלהם בפומבי. התשוקה שלהם פועלת ככוח משיכה, שמדליק סקרנות ומייצר מוטיבציה ראשונית. לעיתים גם ילד צעיר שגילה משהו חדש הופך למוקד משיכה בעצמו, וההיררכיות המוכרות מתמוססות. הכול מתרחש במרחב פתוח, ללא מרכז אחד, שבו מותר להיכשל ומותר ללכת לאיבוד- כי שם, במפגש שבין סקרנות אישית לנוכחות אנושית, נולדים ידע עמוק וזהות חזקה.</p>
+    </div>
   </div>
 
   <!-- Image and Video Grid -->
@@ -369,7 +392,7 @@
       </div>
     </div>
 
-    <!-- Row 5: 1 landscape panorama (FIXED ONLY HERE) -->
+    <!-- Row 5: 1 landscape panorama -->
     <div class="grid-row panorama-row">
       <div class="grid-item extra-wide" onclick="enlargeItem(this)">
         <img src="images/row4-item1.jpg" alt="Gallery image 14" />
@@ -388,29 +411,14 @@
     </div>
   </div>
 
-  <!-- Two Column Content Section -->
+  <!-- Video Section (Only) -->
   <div class="content-section">
-    <!-- Left Column: Video -->
     <div class="video-section">
       <button class="video-button" onclick="toggleVideo()">סרטון >></button>
       <video id="mainVideo" class="large-video hidden" controls muted loop playsinline>
         <source src="videos/main-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-    </div>
-
-    <!-- Right Column: Project Info -->
-    <div class="info-section">
-      <button class="info-button" onclick="toggleInfo()">אודות הפרויקט >></button>
-      <div id="projectText" class="project-text hidden">
-        <p>בעתיד הקרוב, הבינה המלאכותית כבר יודעת לבחור, להמליץ ולהחליט כמעט על כל דבר. היא מכירה כל אדם לעומק, מנבאת רצונות וחוסכת מאמץ. החיים נעשו נוחים ויעילים, אך במקביל משהו מהותי החל להיחלש. אנשים חשבו פחות, דמיינו פחות, והתרגלו לכך שמישהו אחר עושה זאת עבורם. כמו שריר שאינו מופעל, גם השכל והאופי החלו לאבד מכוחם.</p>
-
-        <p>כדי לשמור על האנושיות, נוצרה מערכת חינוך אחרת לגמרי - מערכת אוטופואטית, מתארגנת־עצמית, המבוססת על Polyhadronic Intelligence (PI)  אין בה מורים, כיתות או תוכנית לימודים קבועה. לכל ילד מוצמד PI אישי, שאינו אחראי למסירת תשובות אלא להנעת תהליך הלמידה. במקום פתרונות נוחים, הוא שואל שאלות קשות, מציב ספקות ודוחף למאמץ ולטעויות. כך נבנות חשיבה ביקורתית, דמיון ואומץ פנימי - תכונות שלא ניתן להוריד כאפליקציה.</p>
-
-        <p>על ידו של כל ילד וילדה מגיל תשע תוצמד מדבקה קטנה ועמידה, המכילה את רכיבי ה-PI ומאפשרת פתיחה או סגירה מלאה של המערכת לפי בחירתם. בכל רגע יכולים הילדים לשדר או לקלוט סקרנות: רעיון, משחק או שאלה. אחרים נמשכים לאות, מצטרפים להרפתקה, ונוצרות קבוצות זמניות של למידה ומשחק ללא תלות בגיל או בוותק. בתוך המפגשים הללו הם לומדים להקשיב, להתווכח, להוביל ולהיות מובל. אמפתיה, תקשורת וחוסן רגשי אינם נלמדים באופן תיאורטי, אלא צומחים מתוך החיכוך היומיומי עם אחרים.</p>
-
-        <p>בסביבת הילדים פועלים אמנים, חוקרים ויוצרים, השקועים בעשייתם במרחב הציבורי. תפקידם אינו ללמד, אלא להחיות את הידע שלהם בפומבי. התשוקה שלהם פועלת ככוח משיכה, שמדליק סקרנות ומייצר מוטיבציה ראשונית. לעיתים גם ילד צעיר שגילה משהו חדש הופך למוקד משיכה בעצמו, וההיררכיות המוכרות מתמוססות. הכול מתרחש במרחב פתוח, ללא מרכז אחד, שבו מותר להיכשל ומותר ללכת לאיבוד- כי שם, במפגש שבין סקרנות אישית לנוכחות אנושית, נולדים ידע עמוק וזהות חזקה.</p>
-      </div>
     </div>
   </div>
 
