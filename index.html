@@ -64,10 +64,19 @@
 
         /* Image Grid */
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 15px;
             margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .grid-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1400px;
         }
 
         .grid-item {
@@ -75,17 +84,53 @@
             border: 1px solid #ddd;
             overflow: hidden;
             position: relative;
+            flex-shrink: 0;
         }
 
-        /* All items use 16:9 aspect ratio */
+        /* Different size variations */
+        .grid-item.small {
+            width: 150px;
+            height: 150px;
+        }
+
+        .grid-item.medium {
+            width: 250px;
+            height: 187px;
+        }
+
+        .grid-item.large {
+            width: 350px;
+            height: 197px;
+        }
+
+        .grid-item.wide {
+            width: 450px;
+            height: 193px;
+        }
+
+        .grid-item.tall {
+            width: 200px;
+            height: 300px;
+        }
+
         .grid-item.portrait {
-            grid-row: span 2;
-            aspect-ratio: 9/16;
+            width: 180px;
+            height: 320px;
         }
 
         .grid-item.landscape {
-            grid-column: span 2;
-            aspect-ratio: 16/9;
+            width: 300px;
+            height: 169px;
+        }
+
+        .grid-item.extra-wide {
+            width: 700px;
+            height: 300px;
+        }
+
+        .grid-item.square {
+            width: 220px;
+            height: 220px;
         }
 
         .grid-item img {
@@ -108,17 +153,25 @@
 
         /* Enlarged state */
         .grid-item.enlarged {
-            grid-column: 1 / -1;
-            width: 100%;
-            max-width: 800px;
-            height: auto;
-            aspect-ratio: 16/9;
-            margin: 0 auto;
+            width: 900px !important;
+            height: auto !important;
+            max-width: 90vw;
         }
 
-        .grid-item.enlarged.portrait {
-            aspect-ratio: 9/16;
-            max-width: 450px;
+        .grid-item.enlarged.portrait,
+        .grid-item.enlarged.tall {
+            width: 500px !important;
+        }
+
+        .grid-item.enlarged.wide,
+        .grid-item.enlarged.extra-wide {
+            width: 1200px !important;
+        }
+
+        .grid-item.enlarged img,
+        .grid-item.enlarged video {
+            width: 100%;
+            height: auto;
         }
 
         /* Two Column Layout */
@@ -275,64 +328,80 @@
 
     <!-- Image and Video Grid -->
     <div class="image-grid">
-        <!-- FIRST ROW: right to left: landscape image, landscape image, landscape image, landscape mp4 -->
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row1-item1.jpg" alt="Gallery image 1">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row1-item2.jpg" alt="Gallery image 2">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row1-item3.jpg" alt="Gallery image 3">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row1-item4.mp4" type="video/mp4">
-            </video>
+        <!-- Row 1: Centered -->
+        <div class="grid-row">
+            <div class="grid-item medium" onclick="enlargeItem(this)">
+                <img src="images/row1-item1.jpg" alt="Gallery image 1">
+            </div>
+            <div class="grid-item medium" onclick="enlargeItem(this)">
+                <img src="images/row1-item2.jpg" alt="Gallery image 2">
+            </div>
+            <div class="grid-item medium" onclick="enlargeItem(this)">
+                <img src="images/row1-item3.jpg" alt="Gallery image 3">
+            </div>
         </div>
 
-        <!-- SECOND ROW: right to left: portrait image, landscape image, landscape mp4, portrait image, landscape image -->
-        <div class="grid-item portrait" onclick="enlargeItem(this)">
-            <img src="images/row2-item1.jpg" alt="Gallery image 5">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row2-item2.jpg" alt="Gallery image 6">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row2-item3.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="grid-item portrait" onclick="enlargeItem(this)">
-            <img src="images/row2-item4.jpg" alt="Gallery image 7">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row2-item5.jpg" alt="Gallery image 8">
+        <!-- Row 2: Wide video centered -->
+        <div class="grid-row">
+            <div class="grid-item wide" onclick="enlargeItem(this)">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/row1-item4.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
 
-        <!-- THIRD ROW: 5 landscape images -->
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row3-item1.jpg" alt="Gallery image 9">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row3-item2.jpg" alt="Gallery image 10">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row3-item3.jpg" alt="Gallery image 11">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row3-item4.jpg" alt="Gallery image 12">
-        </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row3-item5.jpg" alt="Gallery image 13">
+        <!-- Row 3: Mixed sizes -->
+        <div class="grid-row">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
+                <img src="images/row2-item1.jpg" alt="Gallery image 5">
+            </div>
+            <div class="grid-item tall" onclick="enlargeItem(this)">
+                <img src="images/row2-item2.jpg" alt="Gallery image 6">
+            </div>
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/row2-item3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="grid-item portrait" onclick="enlargeItem(this)">
+                <img src="images/row2-item4.jpg" alt="Gallery image 7">
+            </div>
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
+                <img src="images/row1-item5.jpg" alt="Gallery image 8">
+            </div>
         </div>
 
-        <!-- FOURTH ROW: 2 landscape images -->
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row4-item1.jpg" alt="Gallery image 14">
+        <!-- Row 4: 5 landscape images -->
+        <div class="grid-row">
+            <div class="grid-item small" onclick="enlargeItem(this)">
+                <img src="images/row3-item1.jpg" alt="Gallery image 9">
+            </div>
+            <div class="grid-item small" onclick="enlargeItem(this)">
+                <img src="images/row3-item2.jpg" alt="Gallery image 10">
+            </div>
+            <div class="grid-item small" onclick="enlargeItem(this)">
+                <img src="images/row3-item3.jpg" alt="Gallery image 11">
+            </div>
+            <div class="grid-item small" onclick="enlargeItem(this)">
+                <img src="images/row3-item4.jpg" alt="Gallery image 12">
+            </div>
+            <div class="grid-item small" onclick="enlargeItem(this)">
+                <img src="images/row3-item5.jpg" alt="Gallery image 13">
+            </div>
         </div>
-        <div class="grid-item landscape" onclick="enlargeItem(this)">
-            <img src="images/row4-item2.jpg" alt="Gallery image 15">
+
+        <!-- Row 5: Extra wide image -->
+        <div class="grid-row">
+            <div class="grid-item extra-wide" onclick="enlargeItem(this)">
+                <img src="images/row4-item1.jpg" alt="Gallery image 14">
+            </div>
+        </div>
+
+        <!-- Row 6: Large image -->
+        <div class="grid-row">
+            <div class="grid-item large" onclick="enlargeItem(this)">
+                <img src="images/row4-item2.jpg" alt="Gallery image 15">
+            </div>
         </div>
     </div>
 
