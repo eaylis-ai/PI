@@ -144,10 +144,19 @@
         .grid-item video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
             cursor: pointer;
             transition: all 0.3s ease;
+            background: #000;
+        }
+
+        /* Video containers maintain aspect ratio */
+        .grid-item.wide video,
+        .grid-item.large video,
+        .grid-item.landscape video {
+            height: auto;
+            aspect-ratio: 16/9;
         }
 
         /* Enlarged state */
