@@ -86,6 +86,20 @@
             max-width: 1400px;
         }
 
+        .grid-row.fixed-width {
+            max-width: 1535px;
+            width: 100%;
+        }
+
+        .grid-row.fixed-width .grid-item.landscape {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .grid-row.fixed-width .grid-item.extra-wide {
+            width: 100%;
+        }
+
         .grid-item {
             background-color: #f5f5f5;
             overflow: hidden;
@@ -384,11 +398,11 @@
 
         <!-- Row 3: Mixed sizes -->
         <div class="grid-row">
-            <div class="grid-item tall" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row2-item1.jpg" alt="Gallery image 5">
                 <div class="enlarged-text">הסבר לתמונה זו.</div>
             </div>
-            <div class="grid-item landscape" onclick="enlargeItem(this)">
+            <div class="grid-item tall" onclick="enlargeItem(this)">
                 <img src="images/row2-item2.jpg" alt="Gallery image 6">
                 <div class="enlarged-text">פרטים נוספים כאן.</div>
             </div>
@@ -409,7 +423,7 @@
         </div>
 
         <!-- Row 4: 5 landscape images -->
-        <div class="grid-row">
+        <div class="grid-row fixed-width">
             <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item1.jpg" alt="Gallery image 9">
                 <div class="enlarged-text">הסבר קצר.</div>
@@ -433,7 +447,7 @@
         </div>
 
         <!-- Row 5: 1 landscape panorama -->
-        <div class="grid-row">
+        <div class="grid-row fixed-width">
             <div class="grid-item extra-wide" onclick="enlargeItem(this)">
                 <img src="images/row4-item1.jpg" alt="Gallery image 14">
                 <div class="enlarged-text">הסבר מפורט לתמונה הפנורמית.</div>
