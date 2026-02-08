@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUNNE & RABY - Not Here, Not Now</title>
+    <style>
+        @font-face {
+            font-family: 'ArbelHagilda';
+            src: local('ArbelHagilda'), local('Arbel Hagilda');
+            font-weight: bold;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            font-family: 'ArbelHagilda', 'Arial', sans-serif;
+            font-weight: bold;
+            color: #000;
+            padding: 40px 60px;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            letter-spacing: 8px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 0.9em;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* Image Grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .grid-item {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* All items use 16:9 aspect ratio */
+        .grid-item.portrait {
+            grid-row: span 2;
+            aspect-ratio: 9/16;
+        }
+
+        .grid-item.landscape {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Two Column Layout */
+        .content-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .video-section {
+            position: relative;
+        }
+
+        .video-button {
+            display: inline-block;
+            background-color: #50E3C2;
+            color: #000;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'ArbelHagilda', 'Arial', sans-serif;
+            font-weight: bold;
+        }
+
+        .video-button:hover {
+            background-color: #3dd4b3;
+        }
+
+        .large-video {
+            width: 100%;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+        .info-section {
+            position: relative;
+        }
+
+        .info-button {
+            display: inline-block;
+            background-color: #50E3C2;
+            color: #000;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+            border: none;
+            cursor: pointer;
+            font-family: 'ArbelHagilda', 'Arial', sans-serif;
+            font-weight: bold;
+        }
+
+        .info-button:hover {
+            background-color: #3dd4b3;
+        }
+
+        .project-text {
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .project-text p {
+            margin-bottom: 20px;
+        }
+
+        .project-text a {
+            color: #50E3C2;
+            text-decoration: none;
+        }
+
+        .project-text a:hover {
+            text-decoration: underline;
+        }
+
+        .credits {
+            margin-top: 30px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .back-link {
+            color: #50E3C2;
+            text-decoration: none;
+            font-size: 0.9em;
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .image-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .grid-item.landscape {
+                grid-column: span 2;
+            }
+            
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .grid-item.landscape {
+                grid-column: span 2;
+            }
+            
+            .grid-item.portrait {
+                grid-row: span 1;
+                aspect-ratio: 9/16;
+            }
+            
+            body {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>DUNNE & RABY</h1>
+        <div class="subtitle">NOT HERE, NOT NOW (VIDEO), 2015</div>
+    </div>
+
+    <!-- Image and Video Grid -->
+    <div class="image-grid">
+        <!-- FIRST ROW: 5 landscape rectangles -->
+        <div class="grid-item landscape">
+            <img src="images/row1-item1.jpg" alt="Gallery image 1">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row1-item2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row1-item3.jpg" alt="Gallery image 3">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row1-item4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row1-item5.jpg" alt="Gallery image 5">
+        </div>
+
+        <!-- SECOND ROW: portrait, landscape, landscape, portrait, landscape -->
+        <div class="grid-item portrait">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row2-item1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row2-item2.jpg" alt="Gallery image 7">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row2-item3.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item portrait">
+            <img src="images/row2-item4.jpg" alt="Gallery image 9">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row2-item5.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <!-- THIRD ROW: 5 landscape rectangles -->
+        <div class="grid-item landscape">
+            <img src="images/row3-item1.jpg" alt="Gallery image 11">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row3-item2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row3-item3.jpg" alt="Gallery image 13">
+        </div>
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row3-item4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row3-item5.jpg" alt="Gallery image 15">
+        </div>
+
+        <!-- FOURTH ROW: 2 landscape rectangles -->
+        <div class="grid-item landscape">
+            <video autoplay muted loop playsinline>
+                <source src="videos/row4-item1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="grid-item landscape">
+            <img src="images/row4-item2.jpg" alt="Gallery image 17">
+        </div>
+    </div>
+
+    <!-- Two Column Content Section -->
+    <div class="content-section">
+        <!-- Left Column: Video -->
+        <div class="video-section">
+            <button class="video-button">Video >></button>
+            <video class="large-video" controls autoplay muted loop playsinline>
+                <source src="videos/main-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Right Column: Project Info -->
+        <div class="info-section">
+            <button class="info-button">Project Info >></button>
+            <div class="project-text">
+                <p>We were commissioned by the MAK to produce new work for <a href="#">The School of Constructed Realities</a> exhibition at the Geymüllerschlössel. We focused on how design fictions are presented and wanted to move away from realism and naturalism to present a more ambiguous world, it could be now, the past or the future.</p>
+
+                <p>We developed an earlier project commissioned by Z33 called Not Here, Not Now which consisted of six design proposals for slightly satirical objects for Digitarians.</p>
+
+                <p>The first one is an Ethiculator: A calculator for resolving everyday ethical dilemmas. It's the end point of a long journey involving a shift away from human judgement to standardisation through templates and forms to algorithms…</p>
+
+                <p>In the second design, Publi-Voice, we fast forwarded the gulf opening between what people can say in private and public, 'public' meaning social and online media. It's not hard to imagine a time when we need to be schooled in how we present ourselves in public and make use of special vocabularies so as not to offend others and suffer the increasingly serious consequences that come with it.</p>
+
+                <p>The device is for visitors to Digiland who need to translate terms they use in their own culture in to less harmful ones for digiland. Basically we're talking about euphemisms. Some already exist, while a few were developed by digitarians.</p>
+
+                <p>We were very interested in using isometric projection rather than perspective to make everything feel a little less natural, in a subtle way. We also wanted to make the materiality of the object ambiguous - is it a field, a film, or a material? And finally, at some point we may see a return of the 3rd dimension and a move away from the reduction of electronic objects to flat screens and instead see them tailored to our bodies and environments.</p>
+
+                <div class="credits">
+                    <p>Commissioner: Thomas Geisler/<a href="#">MAK Design Salon #4</a><br>
+                    Concept, design and creative direction: Dunne & Raby<br>
+                    Effects: <a href="#">Keiichi Matsuda</a><br>
+                    3D Models: <a href="#">Lukas Franciszkiewicz</a><br>
+                    Camera: Lee Daley<br>
+                    Girl 1: Helen Mutch<br>
+                    Girl 2: Laura McAlpine<br>
+                    Hair & Make-up: <a href="#">Wakana Yoshihara</a><br>
+                    Additional Compositing: Ray Hugh Bray</p>
+                </div>
+
+                <a href="#" class="back-link"><<</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
