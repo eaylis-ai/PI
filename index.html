@@ -432,15 +432,21 @@
             </div>
         </div>
 
-        <!-- Row 5: 2 landscape images -->
+        <!-- Row 5: 1 landscape panorama -->
         <div class="grid-row">
-            <div class="grid-item landscape" onclick="enlargeItem(this)">
+            <div class="grid-item extra-wide" onclick="enlargeItem(this)">
                 <img src="images/row4-item1.jpg" alt="Gallery image 14">
-                <div class="enlarged-text">הסבר מפורט לתמונה.</div>
+                <div class="enlarged-text">הסבר מפורט לתמונה הפנורמית.</div>
             </div>
-            <div class="grid-item landscape" onclick="enlargeItem(this)">
-                <img src="images/row4-item2.jpg" alt="Gallery image 15">
-                <div class="enlarged-text">תיאור התמונה האחרונה.</div>
+        </div>
+
+        <!-- Row 6: landscape mp4 big (16:9 ratio) -->
+        <div class="grid-row">
+            <div class="grid-item large" onclick="enlargeItem(this)">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/row4-item2.mp4" type="video/mp4">
+                </video>
+                <div class="enlarged-text">תיאור הסרטון הגדול.</div>
             </div>
         </div>
     </div>
