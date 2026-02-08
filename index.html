@@ -22,14 +22,22 @@
             font-weight: bold;
             color: #000;
             padding: 40px 60px;
+            padding-top: 200px;
             line-height: 1.6;
             direction: rtl;
             text-align: right;
         }
 
         .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             text-align: center;
-            margin-bottom: 40px;
+            padding: 20px 0;
+            background-color: #ffffff;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .logo-video {
@@ -88,8 +96,8 @@
 
         /* Different size variations */
         .grid-item.small {
-            width: 150px;
-            height: 150px;
+            width: 200px;
+            height: 112px;
         }
 
         .grid-item.medium {
@@ -377,11 +385,11 @@
 
         <!-- Row 3: Mixed sizes -->
         <div class="grid-row">
-            <div class="grid-item tall" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row2-item1.jpg" alt="Gallery image 5">
                 <div class="enlarged-text">הסבר לתמונה זו.</div>
             </div>
-            <div class="grid-item landscape" onclick="enlargeItem(this)">
+            <div class="grid-item tall" onclick="enlargeItem(this)">
                 <img src="images/row2-item2.jpg" alt="Gallery image 6">
                 <div class="enlarged-text">פרטים נוספים כאן.</div>
             </div>
@@ -403,23 +411,23 @@
 
         <!-- Row 4: 5 landscape images -->
         <div class="grid-row">
-            <div class="grid-item small" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item1.jpg" alt="Gallery image 9">
                 <div class="enlarged-text">הסבר קצר.</div>
             </div>
-            <div class="grid-item small" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item2.jpg" alt="Gallery image 10">
                 <div class="enlarged-text">פרטים על תמונה זו.</div>
             </div>
-            <div class="grid-item small" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item3.jpg" alt="Gallery image 11">
                 <div class="enlarged-text">מידע נוסף.</div>
             </div>
-            <div class="grid-item small" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item4.jpg" alt="Gallery image 12">
                 <div class="enlarged-text">תיאור התמונה.</div>
             </div>
-            <div class="grid-item small" onclick="enlargeItem(this)">
+            <div class="grid-item landscape" onclick="enlargeItem(this)">
                 <img src="images/row3-item5.jpg" alt="Gallery image 13">
                 <div class="enlarged-text">טקסט הסבר.</div>
             </div>
