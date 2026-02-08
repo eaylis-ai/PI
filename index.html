@@ -20,21 +20,18 @@
       font-weight: bold;
       color: #000;
       padding: 40px 60px;
-      padding-top: 120px;
+      padding-top: 100px;
       line-height: 1.6;
       direction: rtl;
+      text-align: right;
     }
 
-    /* ================= HEADER ================= */
-
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+    .header { text-align: center; margin-bottom: 40px; }
 
     .logo-video {
       width: 200px;
-      margin: 0 auto 20px;
+      height: auto;
+      margin: 0 auto 20px auto;
       display: block;
     }
 
@@ -47,66 +44,22 @@
       letter-spacing: 8px;
       font-weight: 300;
       color: #D54145;
+      background-color: transparent;
       z-index: 100;
+      padding: 10px 20px;
     }
 
-    .subtitle.main {
-      font-size: 1.3em;
-      color: #D54145;
-    }
+    .subtitle { font-size: 0.9em; margin-bottom: 5px; }
+    .subtitle.main { font-size: 1.3em; margin-bottom: 5px; color: #D54145; }
+    .subtitle.english { color: #D54145; }
 
-    .subtitle.english {
-      color: #D54145;
-      font-size: 0.9em;
-    }
-
-    /* ================= FIXED INFO (LEFT) ================= */
-
-    .fixed-info {
-      position: fixed;
-      top: 120px;              /* מתחת להדר */
-      left: 60px;              /* צד שמאל */
-      width: 320px;
-      z-index: 50;
-    }
-
-    .info-button {
-      background-color: #D54145;
-      color: #fff;
-      padding: 8px 20px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.85em;
-      font-family: inherit;
-      margin-bottom: 15px;
-    }
-
-    .info-button:hover {
-      background-color: #C13539;
-    }
-
-    .project-text {
-      display: none;
-      font-size: 0.9em;
-      line-height: 1.8;
-    }
-
-    .project-text p {
-      margin-bottom: 16px;
-    }
-
-    .project-text.visible {
-      display: block;
-    }
-
-    /* ================= IMAGE GRID ================= */
-
+    /* Image Grid */
     .image-grid {
       display: flex;
       flex-direction: column;
       gap: 15px;
+      margin-bottom: 40px;
       align-items: center;
-      margin-bottom: 60px;
     }
 
     .grid-row {
@@ -117,30 +70,192 @@
       max-width: 1400px;
     }
 
+    .grid-row.fixed-width {
+      max-width: 1535px;
+      width: 100%;
+    }
+
+    .grid-row.fixed-width .grid-item.landscape {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .grid-row.fixed-width .grid-item.extra-wide {
+      width: 100%;
+    }
+
     .grid-item {
       background-color: #f5f5f5;
       overflow: hidden;
       position: relative;
       flex-shrink: 0;
-      cursor: pointer;
     }
 
+    /* Different size variations */
+    .grid-item.small { width: 200px; height: 112px; }
     .grid-item.medium { width: 250px; height: 187px; }
-    .grid-item.landscape { width: 300px; height: 169px; }
+    .grid-item.large { width: 350px; height: 197px; }
+    .grid-item.wide { width: 450px; height: 253px; }
     .grid-item.tall { width: 200px; height: 300px; }
     .grid-item.portrait { width: 180px; height: 320px; }
-    .grid-item.large { width: 350px; height: 197px; }
+    .grid-item.landscape { width: 300px; height: 169px; }
     .grid-item.extra-wide { width: 700px; height: 394px; }
+    .grid-item.square { width: 220px; height: 220px; }
 
-    .grid-item img,
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
     .grid-item video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    /* ================= PANORAMA ONLY ================= */
+    /* Enlarged state */
+    .grid-item.enlarged {
+      width: 900px !important;
+      height: auto !important;
+      max-width: 90vw;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .grid-item.enlarged.portrait,
+    .grid-item.enlarged.tall {
+      width: 500px !important;
+    }
+
+    .grid-item.enlarged.wide,
+    .grid-item.enlarged.extra-wide {
+      width: 1200px !important;
+    }
+
+    .grid-item.enlarged img,
+    .grid-item.enlarged video {
+      width: 100%;
+      height: auto;
+      flex-shrink: 0;
+    }
+
+    /* Text that appears when enlarged */
+    .enlarged-text {
+      display: none;
+      padding: 20px 0;
+      font-size: 0.9em;
+      line-height: 1.8;
+      max-width: 300px;
+      flex-shrink: 0;
+    }
+
+    .grid-item.enlarged .enlarged-text { display: block; }
+
+    .grid-item.enlarged.portrait .enlarged-text,
+    .grid-item.enlarged.tall .enlarged-text {
+      max-width: 250px;
+    }
+
+    /* Two Column Layout */
+    .content-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .video-section { position: relative; }
+
+    .video-button {
+      display: inline-block;
+      background-color: #D54145;
+      color: #ffffff;
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 0.85em;
+      margin-bottom: 20px;
+      border: none;
+      cursor: pointer;
+      font-family: 'ArbelHagilda', 'Arial', sans-serif;
+      font-weight: bold;
+    }
+
+    .video-button:hover { background-color: #C13539; }
+
+    .large-video {
+      width: 100%;
+      background-color: #f5f5f5;
+    }
+
+    .large-video.hidden { display: none; }
+
+    .info-section { position: relative; }
+
+    .project-text.hidden { display: none; }
+
+    .info-button {
+      display: inline-block;
+      background-color: #D54145;
+      color: #ffffff;
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 0.85em;
+      margin-bottom: 20px;
+      border: none;
+      cursor: pointer;
+      font-family: 'ArbelHagilda', 'Arial', sans-serif;
+      font-weight: bold;
+    }
+
+    .info-button:hover { background-color: #C13539; }
+
+    .project-text { font-size: 0.9em; line-height: 1.8; }
+    .project-text p { margin-bottom: 20px; }
+    .project-text a { color: #50E3C2; text-decoration: none; }
+    .project-text a:hover { text-decoration: underline; }
+
+    .credits { margin-top: 30px; font-size: 0.85em; line-height: 1.8; }
+
+    .back-link {
+      color: #50E3C2;
+      text-decoration: none;
+      font-size: 0.9em;
+      margin-top: 30px;
+      display: inline-block;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .image-grid { grid-template-columns: repeat(4, 1fr); }
+      .grid-item.landscape { grid-column: span 2; }
+      .content-section { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .image-grid { grid-template-columns: repeat(2, 1fr); }
+      .grid-item.landscape { grid-column: span 2; }
+      .grid-item.portrait { grid-row: span 1; aspect-ratio: 9/16; }
+      body { padding: 20px; }
+      .header h1 { font-size: 1.5em; letter-spacing: 4px; }
+    }
+
+    /* ============================================================
+       PANORAMA ROW ONLY — DOES NOT AFFECT OTHER ROWS
+       Fixes cropping caused by:
+       - .grid-item { overflow:hidden }
+       - .grid-item.extra-wide { height:394px }
+       - .grid-item img { height:100%; object-fit:cover }
+       ============================================================ */
 
     .grid-row.panorama-row {
       max-width: none;
@@ -148,112 +263,188 @@
       justify-content: center;
     }
 
-    .grid-row.panorama-row .grid-item.extra-wide {
-      width: 1535px;
+    .grid-row.panorama-row > .grid-item.extra-wide {
+      width: 1535px;     /* adjust if needed */
       max-width: 100%;
-      height: auto;
-      overflow: visible;
+      height: auto;      /* remove fixed height ONLY here */
+      overflow: visible; /* stop clipping ONLY here */
     }
 
-    .grid-row.panorama-row .grid-item.extra-wide img {
+    .grid-row.panorama-row > .grid-item.extra-wide > img {
       width: 100%;
       height: auto;
-      object-fit: contain;
-    }
-
-    /* ================= ENLARGED ================= */
-
-    .grid-item.enlarged {
-      width: 1000px !important;
-      height: auto !important;
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-
-    .grid-item.enlarged img,
-    .grid-item.enlarged video {
-      height: auto;
-    }
-
-    .enlarged-text {
-      display: none;
-      max-width: 300px;
-      font-size: 0.9em;
-    }
-
-    .grid-item.enlarged .enlarged-text {
+      object-fit: contain; /* show full panorama (no crop) */
       display: block;
-    }
-
-    /* ================= RESPONSIVE ================= */
-
-    @media (max-width: 1024px) {
-      .fixed-info {
-        position: static;
-        width: 100%;
-        margin-bottom: 40px;
-      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- HEADER -->
   <div class="header">
     <video class="logo-video" autoplay muted loop playsinline>
-      <source src="videos/logo.mp4" type="video/mp4">
+      <source src="videos/logo.mp4" type="video/mp4" />
     </video>
+
     <h1>*PI</h1>
+
     <div class="subtitle main">מערכת חינוך אוטופואטית בהתארגנות עצמית</div>
     <div class="subtitle english">Polyhadronic Intelligence*</div>
   </div>
 
-  <!-- FIXED INFO LEFT -->
-  <div class="fixed-info">
-    <button class="info-button" onclick="toggleInfo()">אודות הפרויקט >></button>
+  <!-- Image and Video Grid -->
+  <div class="image-grid">
+    <!-- Row 1: Centered -->
+    <div class="grid-row">
+      <div class="grid-item medium" onclick="enlargeItem(this)">
+        <img src="images/row1-item1.jpg" alt="Gallery image 1" />
+        <div class="enlarged-text">טקסט הסבר לתמונה הראשונה. כאן אפשר להוסיף פרטים על התמונה.</div>
+      </div>
+      <div class="grid-item medium" onclick="enlargeItem(this)">
+        <img src="images/row1-item2.jpg" alt="Gallery image 2" />
+        <div class="enlarged-text">תיאור התמונה השנייה עם מידע נוסף.</div>
+      </div>
+      <div class="grid-item medium" onclick="enlargeItem(this)">
+        <img src="images/row1-item3.jpg" alt="Gallery image 3" />
+        <div class="enlarged-text">מידע על התמונה השלישית.</div>
+      </div>
+    </div>
 
-    <div id="projectText" class="project-text">
-      <p>בעתיד הקרוב, הבינה המלאכותית כבר יודעת לבחור ולהחליט כמעט על כל דבר...</p>
-      <p>כדי לשמור על האנושיות, נוצרה מערכת חינוך אחרת לגמרי...</p>
-      <p>אמפתיה, תקשורת וחוסן רגשי אינם נלמדים כתיאוריה...</p>
+    <!-- Row 2: Wide video centered -->
+    <div class="grid-row">
+      <div class="grid-item wide" onclick="enlargeItem(this)">
+        <video autoplay muted loop playsinline>
+          <source src="videos/row1-item4.mp4" type="video/mp4" />
+        </video>
+        <div class="enlarged-text">תיאור הסרטון הראשון.</div>
+      </div>
+    </div>
+
+    <!-- Row 3: Mixed sizes -->
+    <div class="grid-row">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row2-item1.jpg" alt="Gallery image 5" />
+        <div class="enlarged-text">הסבר לתמונה זו.</div>
+      </div>
+      <div class="grid-item tall" onclick="enlargeItem(this)">
+        <img src="images/row2-item2.jpg" alt="Gallery image 6" />
+        <div class="enlarged-text">פרטים נוספים כאן.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <video autoplay muted loop playsinline>
+          <source src="videos/row2-item3.mp4" type="video/mp4" />
+        </video>
+        <div class="enlarged-text">מידע על סרטון זה.</div>
+      </div>
+      <div class="grid-item portrait" onclick="enlargeItem(this)">
+        <img src="images/row2-item4.jpg" alt="Gallery image 7" />
+        <div class="enlarged-text">תיאור התמונה.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row1-item5.jpg" alt="Gallery image 8" />
+        <div class="enlarged-text">טקסט נוסף לתמונה.</div>
+      </div>
+    </div>
+
+    <!-- Row 4: 5 landscape images -->
+    <div class="grid-row fixed-width">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row3-item1.jpg" alt="Gallery image 9" />
+        <div class="enlarged-text">הסבר קצר.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row3-item2.jpg" alt="Gallery image 10" />
+        <div class="enlarged-text">פרטים על תמונה זו.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row3-item3.jpg" alt="Gallery image 11" />
+        <div class="enlarged-text">מידע נוסף.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row3-item4.jpg" alt="Gallery image 12" />
+        <div class="enlarged-text">תיאור התמונה.</div>
+      </div>
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
+        <img src="images/row3-item5.jpg" alt="Gallery image 13" />
+        <div class="enlarged-text">טקסט הסבר.</div>
+      </div>
+    </div>
+
+    <!-- Row 5: 1 landscape panorama (FIXED ONLY HERE) -->
+    <div class="grid-row panorama-row">
+      <div class="grid-item extra-wide" onclick="enlargeItem(this)">
+        <img src="images/row4-item1.jpg" alt="Gallery image 14" />
+        <div class="enlarged-text">הסבר מפורט לתמונה הפנורמית.</div>
+      </div>
+    </div>
+
+    <!-- Row 6: landscape mp4 big (16:9 ratio) -->
+    <div class="grid-row">
+      <div class="grid-item large" onclick="enlargeItem(this)">
+        <video autoplay muted loop playsinline>
+          <source src="videos/row4-item2.mp4" type="video/mp4" />
+        </video>
+        <div class="enlarged-text">תיאור הסרטון הגדול.</div>
+      </div>
     </div>
   </div>
 
-  <!-- IMAGE GRID -->
-  <div class="image-grid">
-    <div class="grid-row">
-      <div class="grid-item medium" onclick="enlargeItem(this)">
-        <img src="images/row1-item1.jpg">
-        <div class="enlarged-text">טקסט הסבר</div>
-      </div>
-      <div class="grid-item medium" onclick="enlargeItem(this)">
-        <img src="images/row1-item2.jpg">
-        <div class="enlarged-text">טקסט הסבר</div>
-      </div>
+  <!-- Two Column Content Section -->
+  <div class="content-section">
+    <!-- Left Column: Video -->
+    <div class="video-section">
+      <button class="video-button" onclick="toggleVideo()">סרטון >></button>
+      <video id="mainVideo" class="large-video hidden" controls muted loop playsinline>
+        <source src="videos/main-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
 
-    <div class="grid-row panorama-row">
-      <div class="grid-item extra-wide" onclick="enlargeItem(this)">
-        <img src="images/row4-item1.jpg">
-        <div class="enlarged-text">הסבר פנורמי</div>
+    <!-- Right Column: Project Info -->
+    <div class="info-section">
+      <button class="info-button" onclick="toggleInfo()">אודות הפרויקט >></button>
+      <div id="projectText" class="project-text hidden">
+        <p>בעתיד הקרוב, הבינה המלאכותית כבר יודעת לבחור, להמליץ ולהחליט כמעט על כל דבר. היא מכירה כל אדם לעומק, מנבאת רצונות וחוסכת מאמץ. החיים נעשו נוחים ויעילים, אך במקביל משהו מהותי החל להיחלש. אנשים חשבו פחות, דמיינו פחות, והתרגלו לכך שמישהו אחר עושה זאת עבורם. כמו שריר שאינו מופעל, גם השכל והאופי החלו לאבד מכוחם.</p>
+
+        <p>כדי לשמור על האנושיות, נוצרה מערכת חינוך אחרת לגמרי - מערכת אוטופואטית, מתארגנת־עצמית, המבוססת על Polyhadronic Intelligence (PI)  אין בה מורים, כיתות או תוכנית לימודים קבועה. לכל ילד מוצמד PI אישי, שאינו אחראי למסירת תשובות אלא להנעת תהליך הלמידה. במקום פתרונות נוחים, הוא שואל שאלות קשות, מציב ספקות ודוחף למאמץ ולטעויות. כך נבנות חשיבה ביקורתית, דמיון ואומץ פנימי - תכונות שלא ניתן להוריד כאפליקציה.</p>
+
+        <p>על ידו של כל ילד וילדה מגיל תשע תוצמד מדבקה קטנה ועמידה, המכילה את רכיבי ה-PI ומאפשרת פתיחה או סגירה מלאה של המערכת לפי בחירתם. בכל רגע יכולים הילדים לשדר או לקלוט סקרנות: רעיון, משחק או שאלה. אחרים נמשכים לאות, מצטרפים להרפתקה, ונוצרות קבוצות זמניות של למידה ומשחק ללא תלות בגיל או בוותק. בתוך המפגשים הללו הם לומדים להקשיב, להתווכח, להוביל ולהיות מובל. אמפתיה, תקשורת וחוסן רגשי אינם נלמדים באופן תיאורטי, אלא צומחים מתוך החיכוך היומיומי עם אחרים.</p>
+
+        <p>בסביבת הילדים פועלים אמנים, חוקרים ויוצרים, השקועים בעשייתם במרחב הציבורי. תפקידם אינו ללמד, אלא להחיות את הידע שלהם בפומבי. התשוקה שלהם פועלת ככוח משיכה, שמדליק סקרנות ומייצר מוטיבציה ראשונית. לעיתים גם ילד צעיר שגילה משהו חדש הופך למוקד משיכה בעצמו, וההיררכיות המוכרות מתמוססות. הכול מתרחש במרחב פתוח, ללא מרכז אחד, שבו מותר להיכשל ומותר ללכת לאיבוד- כי שם, במפגש שבין סקרנות אישית לנוכחות אנושית, נולדים ידע עמוק וזהות חזקה.</p>
       </div>
     </div>
   </div>
 
   <script>
-    function enlargeItem(el) {
-      document.querySelectorAll('.grid-item.enlarged')
-        .forEach(i => i.classList.remove('enlarged'));
-      el.classList.toggle('enlarged');
+    function enlargeItem(element) {
+      if (element.classList.contains('enlarged')) {
+        element.classList.remove('enlarged');
+      } else {
+        document.querySelectorAll('.grid-item.enlarged').forEach(item => {
+          item.classList.remove('enlarged');
+        });
+        element.classList.add('enlarged');
+      }
+    }
+
+    function toggleVideo() {
+      const video = document.getElementById('mainVideo');
+      if (video.classList.contains('hidden')) {
+        video.classList.remove('hidden');
+        video.play();
+      } else {
+        video.classList.add('hidden');
+        video.pause();
+      }
     }
 
     function toggleInfo() {
-      document.getElementById('projectText')
-        .classList.toggle('visible');
+      const info = document.getElementById('projectText');
+      if (info.classList.contains('hidden')) {
+        info.classList.remove('hidden');
+      } else {
+        info.classList.add('hidden');
+      }
     }
   </script>
-
 </body>
 </html>
