@@ -64,10 +64,19 @@
 
         /* Image Grid */
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 15px;
             margin-bottom: 40px;
+            align-items: center;
+        }
+
+        .grid-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1400px;
         }
 
         .grid-item {
@@ -75,17 +84,18 @@
             border: 1px solid #ddd;
             overflow: hidden;
             position: relative;
+            flex-shrink: 0;
         }
 
         /* All items use 16:9 aspect ratio */
         .grid-item.portrait {
-            grid-row: span 2;
-            aspect-ratio: 9/16;
+            width: 150px;
+            height: 267px;
         }
 
         .grid-item.landscape {
-            grid-column: span 2;
-            aspect-ratio: 16/9;
+            width: 267px;
+            height: 150px;
         }
 
         .grid-item img {
@@ -206,12 +216,8 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .image-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .grid-item.landscape {
-                grid-column: span 2;
+            .grid-row {
+                flex-wrap: wrap;
             }
             
             .content-section {
@@ -220,17 +226,14 @@
         }
 
         @media (max-width: 600px) {
-            .image-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .grid-item.landscape {
-                grid-column: span 2;
+                width: 200px;
+                height: 112px;
             }
             
             .grid-item.portrait {
-                grid-row: span 1;
-                aspect-ratio: 9/16;
+                width: 112px;
+                height: 200px;
             }
             
             body {
@@ -255,63 +258,71 @@
     <!-- Image and Video Grid -->
     <div class="image-grid">
         <!-- FIRST ROW: right to left: landscape image, landscape image, landscape image, landscape mp4 -->
-        <div class="grid-item landscape">
-            <img src="images/row1-item1.jpg" alt="Gallery image 1">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row1-item2.jpg" alt="Gallery image 2">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row1-item3.jpg" alt="Gallery image 3">
-        </div>
-        <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row1-item4.mp4" type="video/mp4">
-            </video>
+        <div class="grid-row">
+            <div class="grid-item landscape">
+                <img src="images/row1-item1.jpg" alt="Gallery image 1">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row1-item2.jpg" alt="Gallery image 2">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row1-item3.jpg" alt="Gallery image 3">
+            </div>
+            <div class="grid-item landscape">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/row1-item4.mp4" type="video/mp4">
+                </video>
+            </div>
         </div>
 
         <!-- SECOND ROW: right to left: portrait image, landscape image, landscape mp4, portrait image, landscape image -->
-        <div class="grid-item portrait">
-            <img src="images/row2-item1.jpg" alt="Gallery image 5">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row2-item2.jpg" alt="Gallery image 6">
-        </div>
-        <div class="grid-item landscape">
-            <video autoplay muted loop playsinline>
-                <source src="videos/row2-item3.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="grid-item portrait">
-            <img src="images/row2-item4.jpg" alt="Gallery image 7">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row2-item5.jpg" alt="Gallery image 8">
+        <div class="grid-row">
+            <div class="grid-item portrait">
+                <img src="images/row2-item1.jpg" alt="Gallery image 5">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row2-item2.jpg" alt="Gallery image 6">
+            </div>
+            <div class="grid-item landscape">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/row2-item3.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="grid-item portrait">
+                <img src="images/row2-item4.jpg" alt="Gallery image 7">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row2-item5.jpg" alt="Gallery image 8">
+            </div>
         </div>
 
         <!-- THIRD ROW: 5 landscape images -->
-        <div class="grid-item landscape">
-            <img src="images/row3-item1.jpg" alt="Gallery image 9">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row3-item2.jpg" alt="Gallery image 10">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row3-item3.jpg" alt="Gallery image 11">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row3-item4.jpg" alt="Gallery image 12">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row3-item5.jpg" alt="Gallery image 13">
+        <div class="grid-row">
+            <div class="grid-item landscape">
+                <img src="images/row3-item1.jpg" alt="Gallery image 9">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row3-item2.jpg" alt="Gallery image 10">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row3-item3.jpg" alt="Gallery image 11">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row3-item4.jpg" alt="Gallery image 12">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row3-item5.jpg" alt="Gallery image 13">
+            </div>
         </div>
 
         <!-- FOURTH ROW: 2 landscape images -->
-        <div class="grid-item landscape">
-            <img src="images/row4-item1.jpg" alt="Gallery image 14">
-        </div>
-        <div class="grid-item landscape">
-            <img src="images/row4-item2.jpg" alt="Gallery image 15">
+        <div class="grid-row">
+            <div class="grid-item landscape">
+                <img src="images/row4-item1.jpg" alt="Gallery image 14">
+            </div>
+            <div class="grid-item landscape">
+                <img src="images/row4-item2.jpg" alt="Gallery image 15">
+            </div>
         </div>
     </div>
 
