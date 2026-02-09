@@ -167,6 +167,11 @@
       transition: all 0.3s ease;
     }
 
+    /* Remove pointer cursor from row 4 images */
+    .grid-row.fixed-width .grid-item img {
+      cursor: default;
+    }
+
     /* First row hover effect - only when NOT enlarged */
     .grid-row:first-of-type .grid-item:not(.enlarged) img:hover {
       opacity: 0.5;
@@ -419,19 +424,19 @@
 
     <!-- Row 4: 5 landscape images -->
     <div class="grid-row fixed-width">
-      <div class="grid-item landscape" onclick="enlargeItem(this)">
+      <div class="grid-item landscape">
         <img src="images/row3-item1.jpg" alt="Gallery image 9" />
       </div>
-      <div class="grid-item landscape" onclick="enlargeItem(this)">
+      <div class="grid-item landscape">
         <img src="images/row3-item2.jpg" alt="Gallery image 10" />
       </div>
-      <div class="grid-item landscape" onclick="enlargeItem(this)">
+      <div class="grid-item landscape">
         <img src="images/row3-item3.jpg" alt="Gallery image 11" />
       </div>
-      <div class="grid-item landscape" onclick="enlargeItem(this)">
+      <div class="grid-item landscape">
         <img src="images/row3-item4.jpg" alt="Gallery image 12" />
       </div>
-      <div class="grid-item landscape" onclick="enlargeItem(this)">
+      <div class="grid-item landscape">
         <img src="images/row3-item5.jpg" alt="Gallery image 13" />
       </div>
     </div>
