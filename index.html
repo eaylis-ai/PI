@@ -184,7 +184,8 @@
       width: 900px !important;
       height: auto !important;
       max-width: 90vw;
-      display: flex;
+      display: flex !important;
+      flex-direction: row;
       gap: 20px;
       align-items: flex-start;
       position: relative;
@@ -204,25 +205,26 @@
     .grid-item.enlarged video {
       width: auto;
       height: auto;
-      max-width: 100%;
+      max-width: 600px;
       flex-shrink: 0;
     }
 
     /* Text that appears when enlarged - next to image with color only */
     .enlarged-text {
       display: none;
-      padding: 20px 0;
+      padding: 20px;
       font-size: 1em;
-      color: #D54145;
+      color: #ffffff;
+      background-color: rgba(213, 65, 69, 0.9);
       line-height: 1.8;
       max-width: 300px;
       flex-shrink: 0;
-      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9);
       font-weight: bold;
+      border-radius: 5px;
     }
 
     .grid-item.enlarged .enlarged-text { 
-      display: block;
+      display: block !important;
     }
 
     /* Infographic Button - Right side center */
