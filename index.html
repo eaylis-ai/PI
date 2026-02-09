@@ -179,6 +179,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
@@ -377,20 +378,20 @@
   <div class="image-grid">
     <!-- Row 1: Centered -->
     <div class="grid-row">
-      <div class="grid-item medium">
+      <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item1.jpg" alt="Gallery image 1" />
       </div>
-      <div class="grid-item medium">
+      <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item2.jpg" alt="Gallery image 2" />
       </div>
-      <div class="grid-item medium">
+      <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item3.jpg" alt="Gallery image 3" />
       </div>
     </div>
 
     <!-- Row 2: Wide video centered -->
     <div class="grid-row">
-      <div class="grid-item wide">
+      <div class="grid-item wide" onclick="enlargeItem(this)">
         <video autoplay muted loop playsinline>
           <source src="videos/row1-item4.mp4" type="video/mp4" />
         </video>
@@ -399,54 +400,54 @@
 
     <!-- Row 3: Mixed sizes -->
     <div class="grid-row">
-      <div class="grid-item tall">
+      <div class="grid-item tall" onclick="enlargeItem(this)">
         <img src="images/row2-item1.jpg" alt="Gallery image 5" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row2-item2.jpg" alt="Gallery image 6" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <video autoplay muted loop playsinline>
           <source src="videos/row2-item3.mp4" type="video/mp4" />
         </video>
       </div>
-      <div class="grid-item portrait">
+      <div class="grid-item portrait" onclick="enlargeItem(this)">
         <img src="images/row2-item4.jpg" alt="Gallery image 7" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row1-item5.jpg" alt="Gallery image 8" />
       </div>
     </div>
 
     <!-- Row 4: 5 landscape images -->
     <div class="grid-row fixed-width">
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item1.jpg" alt="Gallery image 9" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item2.jpg" alt="Gallery image 10" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item3.jpg" alt="Gallery image 11" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item4.jpg" alt="Gallery image 12" />
       </div>
-      <div class="grid-item landscape">
+      <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item5.jpg" alt="Gallery image 13" />
       </div>
     </div>
 
     <!-- Row 5: 1 landscape panorama -->
     <div class="grid-row panorama-row">
-      <div class="grid-item extra-wide">
+      <div class="grid-item extra-wide" onclick="enlargeItem(this)">
         <img src="images/row4-item1.jpg" alt="Gallery image 14" />
       </div>
     </div>
 
     <!-- Row 6: landscape mp4 FULL WIDTH (16:9 ratio) -->
     <div class="grid-row full-width-video">
-      <div class="grid-item large">
+      <div class="grid-item large" onclick="enlargeItem(this)">
         <video autoplay muted loop playsinline>
           <source src="videos/row4-item2.mp4" type="video/mp4" />
         </video>
