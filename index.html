@@ -31,7 +31,7 @@
     .logo-video {
       width: 200px;
       height: auto;
-      margin: 0 auto 20px auto;
+      margin: 0 auto 5px auto;
       display: block;
     }
 
@@ -58,7 +58,6 @@
       position: fixed;
       top: 100px;
       left: 25%;
-      transform: translateX(-50%);
       z-index: 99;
       max-width: 400px;
     }
@@ -71,7 +70,6 @@
       text-decoration: none;
       font-size: 0.85em;
       margin-bottom: 20px;
-      margin-right: 20px;
       border: none;
       cursor: pointer;
       font-family: 'ArbelHagilda', 'Arial', sans-serif;
@@ -87,6 +85,7 @@
       padding: 20px;
       max-height: 90vh;
       overflow-y: auto;
+      width: 400px;
     }
 
     .project-text.hidden { display: none; }
@@ -201,31 +200,90 @@
 
     .grid-item.enlarged img,
     .grid-item.enlarged video {
-      width: 100%;
+      width: auto;
       height: auto;
+      max-width: 100%;
       flex-shrink: 0;
     }
 
-    /* Text that appears when enlarged - FIXED position with red background */
+    /* Text that appears when enlarged - next to image with color only */
     .enlarged-text {
       display: none;
-      position: fixed;
-      left: 25%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      padding: 30px;
+      padding: 20px 0;
       font-size: 0.9em;
-      color: #ffffff;
+      color: rgba(213, 65, 69, 0.6);
       line-height: 1.8;
-      max-width: 400px;
-      background-color: rgba(213, 65, 69, 0.6);
-      z-index: 98;
-      max-height: 80vh;
-      overflow-y: auto;
+      max-width: 300px;
+      flex-shrink: 0;
     }
 
     .grid-item.enlarged .enlarged-text { 
       display: block;
+    }
+
+    /* Infographic Button - Right side center */
+    .infographic-button-container {
+      position: fixed;
+      right: 25%;
+      bottom: 50%;
+      transform: translate(50%, 50%);
+      z-index: 99;
+    }
+
+    .infographic-button {
+      background-color: #D54145;
+      color: #ffffff;
+      padding: 8px 20px;
+      font-size: 0.85em;
+      border: none;
+      cursor: pointer;
+      font-family: 'ArbelHagilda', 'Arial', sans-serif;
+      font-weight: bold;
+    }
+
+    .infographic-button:hover { background-color: #C13539; }
+
+    /* Infographic Fullscreen Overlay */
+    .infographic-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .infographic-overlay.active {
+      display: flex;
+    }
+
+    .infographic-overlay img {
+      max-width: 95vw;
+      max-height: 95vh;
+      object-fit: contain;
+    }
+
+    .close-infographic {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #D54145;
+      color: white;
+      border: none;
+      font-size: 2em;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-family: 'ArbelHagilda', 'Arial', sans-serif;
+    }
+
+    .close-infographic:hover {
+      background-color: #C13539;
     }
 
     /* Responsive */
@@ -234,17 +292,17 @@
         position: relative;
         top: auto;
         left: auto;
-        transform: none;
         max-width: 100%;
         margin-bottom: 40px;
       }
 
-      .enlarged-text {
-        position: absolute;
-        left: auto;
-        top: auto;
+      .infographic-button-container {
+        position: relative;
+        right: auto;
+        bottom: auto;
         transform: none;
-        max-width: 300px;
+        text-align: center;
+        margin-bottom: 40px;
       }
     }
 
@@ -256,12 +314,10 @@
         position: relative;
         top: auto;
         left: auto;
-        transform: none;
       }
 
-      .enlarged-text {
-        position: relative;
-        max-width: 250px;
+      .project-text {
+        width: 100%;
       }
     }
 
@@ -312,6 +368,17 @@
 
       <p>בסביבת הילדים פועלים אמנים, חוקרים ויוצרים, השקועים בעשייתם במרחב הציבורי. תפקידם אינו ללמד, אלא להחיות את הידע שלהם בפומבי. התשוקה שלהם פועלת ככוח משיכה, שמדליק סקרנות ומייצר מוטיבציה ראשונית. לעיתים גם ילד צעיר שגילה משהו חדש הופך למוקד משיכה בעצמו, וההיררכיות המוכרות מתמוססות. הכול מתרחש במרחב פתוח, ללא מרכז אחד, שבו מותר להיכשל ומותר ללכת לאיבוד- כי שם, במפגש שבין סקרנות אישית לנוכחות אנושית, נולדים ידע עמוק וזהות חזקה.</p>
     </div>
+  </div>
+
+  <!-- Infographic Button - Right Side Center -->
+  <div class="infographic-button-container">
+    <button class="infographic-button" onclick="toggleInfographic()">המערכת >></button>
+  </div>
+
+  <!-- Infographic Fullscreen Overlay -->
+  <div id="infographicOverlay" class="infographic-overlay" onclick="closeInfographic()">
+    <button class="close-infographic" onclick="closeInfographic()">×</button>
+    <img src="images/infographic.jpg" alt="Infographic" />
   </div>
 
   <!-- Image and Video Grid -->
@@ -368,7 +435,7 @@
       </div>
     </div>
 
-    <!-- Row 4: 5 landscape images - NOW CLICKABLE -->
+    <!-- Row 4: 5 landscape images -->
     <div class="grid-row fixed-width">
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item1.jpg" alt="Gallery image 9" />
@@ -430,6 +497,16 @@
       } else {
         info.classList.add('hidden');
       }
+    }
+
+    function toggleInfographic() {
+      const overlay = document.getElementById('infographicOverlay');
+      overlay.classList.add('active');
+    }
+
+    function closeInfographic() {
+      const overlay = document.getElementById('infographicOverlay');
+      overlay.classList.remove('active');
     }
   </script>
 </body>
