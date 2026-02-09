@@ -205,6 +205,8 @@
       width: auto;
       height: auto;
       max-width: 600px;
+      max-height: 80vh;
+      object-fit: contain;
       flex-shrink: 0;
     }
 
@@ -373,15 +375,12 @@
     <div class="grid-row">
       <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item1.jpg" alt="Gallery image 1" />
-        <div class="enlarged-text">ההמיספרה הימנית - המח היצירתי<br>ההמיספרה השמאלית - המח הלוגי</div>
       </div>
       <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item2.jpg" alt="Gallery image 2" />
-        <div class="enlarged-text">המשבר: חיזוק המוח השמאלי: עיבוד לשוני, לוגי ואנליטי. היחלשות הדרגתית</div>
       </div>
       <div class="grid-item medium" onclick="enlargeItem(this)">
         <img src="images/row1-item3.jpg" alt="Gallery image 3" />
-        <div class="enlarged-text">המטרה: לצד ה־AI, לא מעליו - לטפח את מה שאינו ניתן להחלפה.<br>האתגר אינו לנצח את המכונה, אלא לשמור על האדם.<br>בעידן ה־AI - האנושי הוא הערך.</div>
       </div>
     </div>
 
@@ -391,7 +390,6 @@
         <video autoplay muted loop playsinline>
           <source src="videos/row1-item4.mp4" type="video/mp4" />
         </video>
-        <div class="enlarged-text">תיאור הסרטון הראשון.</div>
       </div>
     </div>
 
@@ -399,25 +397,20 @@
     <div class="grid-row">
       <div class="grid-item tall" onclick="enlargeItem(this)">
         <img src="images/row2-item1.jpg" alt="Gallery image 5" />
-        <div class="enlarged-text">הסבר לתמונה זו.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row2-item2.jpg" alt="Gallery image 6" />
-        <div class="enlarged-text">פרטים נוספים כאן.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <video autoplay muted loop playsinline>
           <source src="videos/row2-item3.mp4" type="video/mp4" />
         </video>
-        <div class="enlarged-text">מידע על סרטון זה.</div>
       </div>
       <div class="grid-item portrait" onclick="enlargeItem(this)">
         <img src="images/row2-item4.jpg" alt="Gallery image 7" />
-        <div class="enlarged-text">תיאור התמונה.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row1-item5.jpg" alt="Gallery image 8" />
-        <div class="enlarged-text">טקסט נוסף לתמונה.</div>
       </div>
     </div>
 
@@ -425,23 +418,18 @@
     <div class="grid-row fixed-width">
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item1.jpg" alt="Gallery image 9" />
-        <div class="enlarged-text">הסבר קצר.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item2.jpg" alt="Gallery image 10" />
-        <div class="enlarged-text">פרטים על תמונה זו.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item3.jpg" alt="Gallery image 11" />
-        <div class="enlarged-text">מידע נוסף.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item4.jpg" alt="Gallery image 12" />
-        <div class="enlarged-text">תיאור התמונה.</div>
       </div>
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item5.jpg" alt="Gallery image 13" />
-        <div class="enlarged-text">טקסט הסבר.</div>
       </div>
     </div>
 
@@ -449,7 +437,6 @@
     <div class="grid-row panorama-row">
       <div class="grid-item extra-wide" onclick="enlargeItem(this)">
         <img src="images/row4-item1.jpg" alt="Gallery image 14" />
-        <div class="enlarged-text">הסבר מפורט לתמונה הפנורמית.</div>
       </div>
     </div>
 
@@ -459,20 +446,48 @@
         <video autoplay muted loop playsinline>
           <source src="videos/row4-item2.mp4" type="video/mp4" />
         </video>
-        <div class="enlarged-text">תיאור הסרטון הגדול.</div>
       </div>
     </div>
   </div>
 
   <script>
     function enlargeItem(element) {
+      const img = element.querySelector('img');
+      
       if (element.classList.contains('enlarged')) {
         element.classList.remove('enlarged');
+        // Restore original image for row 1 items
+        if (img && img.dataset.originalSrc) {
+          img.src = img.dataset.originalSrc;
+          delete img.dataset.originalSrc;
+        }
       } else {
         document.querySelectorAll('.grid-item.enlarged').forEach(item => {
           item.classList.remove('enlarged');
+          // Restore original images
+          const itemImg = item.querySelector('img');
+          if (itemImg && itemImg.dataset.originalSrc) {
+            itemImg.src = itemImg.dataset.originalSrc;
+            delete itemImg.dataset.originalSrc;
+          }
         });
+        
         element.classList.add('enlarged');
+        
+        // Swap to enlarged version for row 1 items (items 1-3)
+        if (img) {
+          const currentSrc = img.src;
+          if (currentSrc.includes('row1-item1.jpg')) {
+            img.dataset.originalSrc = currentSrc;
+            img.src = 'images/row1-item1-enlarged.png';
+          } else if (currentSrc.includes('row1-item2.jpg')) {
+            img.dataset.originalSrc = currentSrc;
+            img.src = 'images/row1-item2-enlarged.png';
+          } else if (currentSrc.includes('row1-item3.jpg')) {
+            img.dataset.originalSrc = currentSrc;
+            img.src = 'images/row1-item3-enlarged.png';
+          }
+        }
       }
     }
 
