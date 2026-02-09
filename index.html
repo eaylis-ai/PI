@@ -71,6 +71,7 @@
       text-decoration: none;
       font-size: 0.85em;
       margin-bottom: 20px;
+      margin-right: 20px;
       border: none;
       cursor: pointer;
       font-family: 'ArbelHagilda', 'Arial', sans-serif;
@@ -122,6 +123,25 @@
       width: 100%;
     }
 
+    /* Row 6 - Full width video */
+    .grid-row.full-width-video {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .grid-row.full-width-video .grid-item.large {
+      width: 100%;
+      max-width: 1920px;
+      height: auto;
+    }
+
+    .grid-row.full-width-video .grid-item.large video {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: contain;
+    }
+
     .grid-item {
       background-color: #f5f5f5;
       overflow: hidden;
@@ -166,6 +186,7 @@
       display: flex;
       gap: 20px;
       align-items: flex-start;
+      position: relative;
     }
 
     .grid-item.enlarged.portrait,
@@ -185,60 +206,27 @@
       flex-shrink: 0;
     }
 
-    /* Text that appears when enlarged */
+    /* Text that appears when enlarged - FIXED position with red background */
     .enlarged-text {
       display: none;
-      padding: 20px 0;
+      position: fixed;
+      left: 25%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 30px;
       font-size: 0.9em;
-      color: #D54145;
-      line-height: 1.8;
-      max-width: 300px;
-      flex-shrink: 0;
-    }
-
-    .grid-item.enlarged .enlarged-text { display: block; }
-
-    .grid-item.enlarged.portrait .enlarged-text,
-    .grid-item.enlarged.tall .enlarged-text {
-      max-width: 250px;
-    }
-
-    /* Video Section */
-    .content-section {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-      margin-top: 30px;
-    }
-
-    .video-section { 
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .video-button {
-      display: inline-block;
-      background-color: #D54145;
       color: #ffffff;
-      padding: 8px 20px;
-      text-decoration: none;
-      font-size: 0.85em;
-      margin-bottom: 20px;
-      border: none;
-      cursor: pointer;
-      font-family: 'ArbelHagilda', 'Arial', sans-serif;
-      font-weight: bold;
+      line-height: 1.8;
+      max-width: 400px;
+      background-color: rgba(213, 65, 69, 0.6);
+      z-index: 98;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    .video-button:hover { background-color: #C13539; }
-
-    .large-video {
-      width: 100%;
-      background-color: #f5f5f5;
+    .grid-item.enlarged .enlarged-text { 
+      display: block;
     }
-
-    .large-video.hidden { display: none; }
 
     /* Responsive */
     @media (max-width: 1024px) {
@@ -250,8 +238,14 @@
         max-width: 100%;
         margin-bottom: 40px;
       }
-      
-      .content-section { grid-template-columns: 1fr; }
+
+      .enlarged-text {
+        position: absolute;
+        left: auto;
+        top: auto;
+        transform: none;
+        max-width: 300px;
+      }
     }
 
     @media (max-width: 600px) {
@@ -263,6 +257,11 @@
         top: auto;
         left: auto;
         transform: none;
+      }
+
+      .enlarged-text {
+        position: relative;
+        max-width: 250px;
       }
     }
 
@@ -369,7 +368,7 @@
       </div>
     </div>
 
-    <!-- Row 4: 5 landscape images -->
+    <!-- Row 4: 5 landscape images - NOW CLICKABLE -->
     <div class="grid-row fixed-width">
       <div class="grid-item landscape" onclick="enlargeItem(this)">
         <img src="images/row3-item1.jpg" alt="Gallery image 9" />
@@ -401,25 +400,14 @@
       </div>
     </div>
 
-    <!-- Row 6: landscape mp4 big (16:9 ratio) -->
-    <div class="grid-row">
+    <!-- Row 6: landscape mp4 FULL WIDTH (16:9 ratio) -->
+    <div class="grid-row full-width-video">
       <div class="grid-item large" onclick="enlargeItem(this)">
         <video autoplay muted loop playsinline>
           <source src="videos/row4-item2.mp4" type="video/mp4" />
         </video>
         <div class="enlarged-text">תיאור הסרטון הגדול.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Video Section (Only) -->
-  <div class="content-section">
-    <div class="video-section">
-      <button class="video-button" onclick="toggleVideo()">סרטון >></button>
-      <video id="mainVideo" class="large-video hidden" controls muted loop playsinline>
-        <source src="videos/main-video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
     </div>
   </div>
 
@@ -432,17 +420,6 @@
           item.classList.remove('enlarged');
         });
         element.classList.add('enlarged');
-      }
-    }
-
-    function toggleVideo() {
-      const video = document.getElementById('mainVideo');
-      if (video.classList.contains('hidden')) {
-        video.classList.remove('hidden');
-        video.play();
-      } else {
-        video.classList.add('hidden');
-        video.pause();
       }
     }
 
